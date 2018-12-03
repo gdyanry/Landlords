@@ -11,22 +11,20 @@ import java.util.List;
 public class CardSet {
     public static CardSet getFullSet() {
         CardSet cardSet = new CardSet();
-        int i = 0;
-        for (int j = '3'; j < '9'; j++) {
-            for (int k = 0; k < 4; k++) {
-                cardSet.add(new Card(i++ / 4, (char)i));
+        for (int i = 0; i < Card.CARD_VISUALS.length(); i++) {
+            Card card = Card.get(Card.CARD_VISUALS.charAt(i));
+            for (int j = 0; j < 4; j++) {
+                cardSet.add(card);
             }
         }
-        for (int j = 0; j < 4; j++) {
-            cardSet.add(new Card(7, '0'));
-            cardSet.add(new Card(8, 'J'));
-            cardSet.add(new Card(9, 'Q'));
-            cardSet.add(new Card(10, 'K'));
-            cardSet.add(new Card(11, 'A'));
-            cardSet.add(new Card(12, '2'));
+        return cardSet;
+    }
+
+    public static CardSet get(String visuals) {
+        CardSet cardSet = new CardSet();
+        for (int i = 0; i < visuals.length(); i++) {
+            cardSet.add(Card.get(visuals.charAt(i)));
         }
-        cardSet.add(new Card(13, 'X'));
-        cardSet.add(new Card(13, 'X'));
         return cardSet;
     }
 
@@ -42,6 +40,7 @@ public class CardSet {
     }
 
     public CardSet(int cardCount) {
+        this.cards = new LinkedList<>();
         this.cardCount = cardCount;
     }
 
@@ -80,6 +79,10 @@ public class CardSet {
         if (addCardCount) {
             cardCount += cardSet.cards.size();
         }
+    }
+
+    public boolean isEmpty() {
+        return cards.isEmpty();
     }
 
     @Override

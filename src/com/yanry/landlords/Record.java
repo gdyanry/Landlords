@@ -5,11 +5,13 @@ package com.yanry.landlords;
  * @Date: 2018/12/2 23:18
  */
 public class Record {
-    private Role by;
-    private Object action;
+    private Role who;
 
-    public Record(Role by, Object action) {
-        this.by = by;
-        this.action = action;
+    public Record(Role who) {
+        this.who = who;
+    }
+
+    public Role getWho() {
+        return who;
     }
 }

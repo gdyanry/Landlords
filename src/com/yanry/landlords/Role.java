@@ -25,8 +25,4 @@ public enum  Role {
     public CardSet getCards() {
         return cards;
     }
-
-    public CardSet beat(Card... cards) {
-        return this.cards.dispatch(cards);
-    }
 }
